@@ -1,8 +1,19 @@
 import express from 'express'
 
-import { getCategory, getCategories, createCategory, updateCategory, deleteCategory } from '../../../interfaces/controllers/Products.controller'
+import {
+    getCategory,
+    getCategories,
+    createCategory,
+    updateCategory,
+    deleteCategory,
+    createProduct,
+    getProduct,
+    getProducts,
+    updateProduct,
+    deleteProduct,
+} from '../../../interfaces/controllers/Products.controller'
 
-import { createCategoryMiddleware } from '../../../interfaces/middleware/Products.middleware'
+import { createCategoryMiddleware, createProductMiddleware } from '../../../interfaces/middleware/Products.middleware'
 
 const ProductsRouter = express.Router()
 
@@ -20,5 +31,20 @@ ProductsRouter.put('/categories/:id', updateCategory)
 
 // Delete a category
 ProductsRouter.delete('/categories/:id', deleteCategory)
+
+// Get product
+ProductsRouter.get('/:id', getProduct)
+
+// Get all products
+ProductsRouter.get('/', getProducts)
+
+// Create a product
+ProductsRouter.post('/', createProductMiddleware, createProduct)
+
+// Update a product
+ProductsRouter.put('/:id', updateProduct)
+
+// Delete a product
+ProductsRouter.delete('/:id', deleteProduct)
 
 export default ProductsRouter

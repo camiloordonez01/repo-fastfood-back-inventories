@@ -1,0 +1,5 @@
+export { default as CreateProduct } from './CreateProduct'
+export { default as GetProduct } from './GetProduct'
+export { default as GetProducts } from './GetProducts'
+export { default as UpdateProduct } from './UpdateProduct'
+export { default as DeleteProduct } from './DeleteProduct'

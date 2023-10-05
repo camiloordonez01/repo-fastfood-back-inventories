@@ -5,7 +5,7 @@ import { ErrorHandler } from '../../../shared/infrastructure/handler'
 import { CategoryRepository } from '../../../domain/repositories'
 import { CategoryStorage } from '../../../interfaces/storage/mysql'
 
-const categoryRepository = new CategoryRepository(new CategoryStorage)
+const categoryRepository = new CategoryRepository(new CategoryStorage())
 
 /**
  * Update a category
@@ -30,6 +30,6 @@ export default async (id: number, name?: string, description?: string, categoryI
 
     await categoryRepository.update(id, category)
 
-    const { activeRow, createdAt, updatedAt, ...data} = category
+    const { activeRow, createdAt, updatedAt, ...data } = category
     return data
 }

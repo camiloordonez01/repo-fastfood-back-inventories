@@ -11,7 +11,9 @@ class CategoryStorage extends StorageMysql {
     async getAll() {
         const categories = await this.repository.findBy({ activeRow: '1' })
 
-        return categories.length > 0 ? categories.map((category) => new CategoryEntity(category as CategoryEntity)) : categories
+        return categories.length > 0
+            ? categories.map((category) => new CategoryEntity(category as CategoryEntity))
+            : categories
     }
 
     async getByName(name: string) {
@@ -26,11 +28,12 @@ class CategoryStorage extends StorageMysql {
         return category ? new CategoryEntity(category as CategoryEntity) : category
     }
 
-    
     async getByForeignKey(categoryId: number) {
         const categories = await this.repository.findBy({ categoryId })
 
-        return categories.length > 0 ? categories.map((category) => new CategoryEntity(category as CategoryEntity)) : categories
+        return categories.length > 0
+            ? categories.map((category) => new CategoryEntity(category as CategoryEntity))
+            : categories
     }
 }
 

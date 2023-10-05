@@ -19,14 +19,13 @@
 
         "noImplicitAny": true,
         "strictNullChecks": true,
-        
+
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "noImplicitReturns": true,
-        
 
         "inlineSources": true,
-        "inlineSourceMap": true,
+        "inlineSourceMap": true
     },
     "include": ["**/*.ts", "*.ts"],
     "exclude": ["node_modules"]

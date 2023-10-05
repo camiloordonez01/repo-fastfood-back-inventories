@@ -2,7 +2,7 @@ import { CategoryRepository } from '../../../domain/repositories'
 import { CategoryStorage } from '../../../interfaces/storage/mysql'
 import { CategoryEntity } from '../../../domain/entities'
 
-const categoryRepository = new CategoryRepository(new CategoryStorage)
+const categoryRepository = new CategoryRepository(new CategoryStorage())
 
 /**
  * Get category
@@ -26,12 +26,12 @@ export default async () => {
 
                 // productCategoryId is added to the parent's reference
                 referents.set(category.categoryId, [...referents.get(category.categoryId), category.productCategoryId])
-            } else if(category.categoryId) {
+            } else if (category.categoryId) {
                 //valid that has an associated parent category
 
                 // productCategoryId will be created to the parent reference
                 referents.set(category.categoryId, [category.productCategoryId])
-            } else if(!referents.has(category.productCategoryId)) {
+            } else if (!referents.has(category.productCategoryId)) {
                 // validates whether productCategoryId has a reference to
 
                 referents.set(category.productCategoryId, [])
@@ -40,7 +40,7 @@ export default async () => {
 
             // the information is stored with the key productCategoryId
             if (!dataCategories.has(category.productCategoryId)) {
-                const { activeRow, createdAt, updatedAt, ...data} = category
+                const { activeRow, createdAt, updatedAt, ...data } = category
                 dataCategories.set(category.productCategoryId, data)
             }
         }
@@ -55,7 +55,7 @@ export default async () => {
             if (idSons && idSons.length > 0) {
                 subCategories = idSons.map((id) => {
                     return extractInfo(id, referents.get(id))
-                }) 
+                })
             }
             return { ...dataCategories.get(idFather), subCategories }
         }
